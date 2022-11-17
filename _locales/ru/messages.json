@@ -571,22 +571,6 @@
     "message": "название ветки",
     "description": "Options page label: 'branch name'"
   },
-  "optionSaveWithWebDAV": {
-    "message": "загрузить на WebDAV-сервер",
-    "description": "Options page label: 'upload to a WebDAV server'"
-  },
-  "optionWebDAVURL": {
-    "message": "URL",
-    "description": "Options page label: 'URL'"
-  },
-  "optionWebDAVUser": {
-    "message": "имя пользователя",
-    "description": "Options page label: 'user identifier'"
-  },
-  "optionWebDAVPassword": {
-    "message": "пароль",
-    "description": "Options page label: 'password'"
-  },
   "optionSaveCreatedBookmarks": {
     "message": "сохранить страницу недавно созданной закладки",
     "description": "Options page label: 'save the page of a newly created bookmark'"

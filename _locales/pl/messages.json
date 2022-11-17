@@ -571,22 +571,6 @@
     "message": "nazwa gałęzi",
     "description": "Options page label: 'branch name'"
   },
-  "optionSaveWithWebDAV": {
-    "message": "przesyłaj na serwer WebDAV",
-    "description": "Options page label: 'upload to a WebDAV server'"
-  },
-  "optionWebDAVURL": {
-    "message": "adres URL",
-    "description": "Options page label: 'URL'"
-  },
-  "optionWebDAVUser": {
-    "message": "identyfikator użytkownika",
-    "description": "Options page label: 'user identifier'"
-  },
-  "optionWebDAVPassword": {
-    "message": "hasło",
-    "description": "Options page label: 'password'"
-  },
   "optionSaveCreatedBookmarks": {
     "message": "zapisuj stronę nowo utworzonej zakładki",
     "description": "Options page label: 'save the page of a newly created bookmark'"

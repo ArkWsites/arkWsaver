@@ -106,8 +106,7 @@ async function savePage(message) {
           if (
             ((!options.backgroundSave && !options.saveToClipboard) ||
               options.saveToGDrive ||
-              options.saveToGitHub ||
-              options.saveWithWebDAV) &&
+              options.saveToGitHub) &&
             options.confirmFilename
           ) {
             pageData.filename =
@@ -134,8 +133,7 @@ async function savePage(message) {
 async function processPage(options) {
   const frames = singlefile.processors.frameTree;
   let framesSessionId;
-  options.keepFilename =
-    options.saveToGDrive || options.saveToGitHub || options.saveWithWebDAV;
+  options.keepFilename = options.saveToGDrive || options.saveToGitHub;
   singlefile.helper.initDoc(document);
   ui.onStartPage(options);
   processor = new singlefile.SingleFile(options);

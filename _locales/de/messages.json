@@ -571,22 +571,6 @@
     "message": "Zweigname ",
     "description": "Options page label: 'branch name'"
   },
-  "optionSaveWithWebDAV": {
-    "message": "Hochladen auf einen WebDAV-Server",
-    "description": "Options page label: 'upload to a WebDAV server'"
-  },
-  "optionWebDAVURL": {
-    "message": "URL",
-    "description": "Options page label: 'URL'"
-  },
-  "optionWebDAVUser": {
-    "message": "Benutzerkennwort",
-    "description": "Options page label: 'user identifier'"
-  },
-  "optionWebDAVPassword": {
-    "message": "Passwort",
-    "description": "Options page label: 'password'"
-  },
   "optionSaveCreatedBookmarks": {
     "message": "Speichern der Seite eines neu angelegten Lesezeichens",
     "description": "Options page label: 'save the page of a newly created bookmark'"

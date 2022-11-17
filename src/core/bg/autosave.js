@@ -160,8 +160,7 @@ async function saveContent(message, tab) {
     options.incognito = tab.incognito;
     options.tabId = tabId;
     options.tabIndex = tab.index;
-    options.keepFilename =
-      options.saveToGDrive || options.saveToGitHub || options.saveWithWebDAV;
+    options.keepFilename = options.saveToGDrive || options.saveToGitHub;
     let pageData;
     try {
       pageData = await getPageData(options);
@@ -177,15 +176,6 @@ async function saveContent(message, tab) {
           {
             forceWebAuthFlow: options.forceWebAuthFlow,
           }
-        );
-      } else if (options.saveWithWebDAV) {
-        await downloads.saveWithWebDAV(
-          message.taskId,
-          downloads.encodeSharpCharacter(pageData.filename),
-          pageData.content,
-          options.webDAVURL,
-          options.webDAVUser,
-          options.webDAVPassword
         );
       } else if (options.saveToGitHub) {
         await (

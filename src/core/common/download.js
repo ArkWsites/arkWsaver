@@ -38,8 +38,7 @@ async function downloadPage(pageData, options) {
       options.backgroundSave ||
       options.openEditor ||
       options.saveToGDrive ||
-      options.saveToGitHub ||
-      options.saveWithWebDAV
+      options.saveToGitHub
     ) {
       blobURL = getContentBlobURL(pageData);
       const message = {
@@ -50,10 +49,6 @@ async function downloadPage(pageData, options) {
         filename: pageData.filename,
         saveToClipboard: options.saveToClipboard,
         saveToGDrive: options.saveToGDrive,
-        saveWithWebDAV: options.saveWithWebDAV,
-        webDAVURL: options.webDAVURL,
-        webDAVUser: options.webDAVUser,
-        webDAVPassword: options.webDAVPassword,
         saveToGitHub: options.saveToGitHub,
         githubToken: options.githubToken,
         githubUser: options.githubUser,
