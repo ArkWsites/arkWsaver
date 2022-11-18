@@ -10,7 +10,7 @@ These elements need JavaScript to work properly. By default, ArkWSaver removes s
 
 ## What are the permissions requested by ArkWsaver for?
 
-The permissions requested by ArkWSaver are defined in the [manifest.json](https://github.com/gildas-lormeau/SingleFile/blob/master/manifest.json) file. Below are the reasons why they are necessary.
+The permissions requested by ArkWSaver are defined in the [manifest.json](https://github.com/brobles82/arkWsaver/blob/main/manifest.json) file. Below are the reasons why they are necessary.
 
 - `storage`: allows ArkWsaver to store your settings.
 - `menus/contextMenus`: allows ArkWsaver to display an entry in the context menu of web pages.

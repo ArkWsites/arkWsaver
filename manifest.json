@@ -1,7 +1,7 @@
 {
   "name": "ArkWsaver",
   "author": "Gildas Lormeau",
-  "homepage_url": "https://github.com/gildas-lormeau/SingleFile-Lite",
+  "homepage_url": "https://github.com/brobles82/arkWsaver",
   "icons": {
     "16": "src/ui/resources/icon_16.png",
     "48": "src/ui/resources/icon_48.png",
