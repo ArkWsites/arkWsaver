@@ -547,25 +547,13 @@
     "message": "токен доступа",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "загрузить на GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "загрузить на ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "токен доступа",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "имя пользователя",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "название репозитория",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "название ветки",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "сохранить страницу недавно созданной закладки",

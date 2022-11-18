@@ -547,25 +547,13 @@
     "message": "token accesso",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "carica su GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "carica su ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "token accesso",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "nome utente",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "nome repository",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "nome branch",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "salva la pagina di un nuovo segnalibro creato",

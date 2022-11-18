@@ -34,7 +34,11 @@ async function downloadPage(pageData, options) {
     if (options.includeInfobar) {
       await infobar.includeScript(pageData);
     }
-    if (options.backgroundSave || options.openEditor || options.saveToGitHub) {
+    if (
+      options.backgroundSave ||
+      options.openEditor ||
+      options.saveToArkWsites
+    ) {
       blobURL = getContentBlobURL(pageData);
       const message = {
         method: "downloads.download",
@@ -43,11 +47,8 @@ async function downloadPage(pageData, options) {
         filenameConflictAction: options.filenameConflictAction,
         filename: pageData.filename,
         saveToClipboard: options.saveToClipboard,
-        saveToGitHub: options.saveToGitHub,
-        githubToken: options.githubToken,
-        githubUser: options.githubUser,
-        githubRepository: options.githubRepository,
-        githubBranch: options.githubBranch,
+        saveToArkWsites: options.saveToArkWsites,
+        ArkWsitesToken: options.ArkWsitesToken,
         forceWebAuthFlow: options.forceWebAuthFlow,
         filenameReplacementCharacter: options.filenameReplacementCharacter,
         openEditor: options.openEditor,

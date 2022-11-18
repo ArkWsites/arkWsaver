@@ -75,11 +75,8 @@ const saveToClipboardLabel = document.getElementById("saveToClipboardLabel");
 const saveToFilesystemLabel = document.getElementById("saveToFilesystemLabel");
 const addProofLabel = document.getElementById("addProofLabel");
 const woleetKeyLabel = document.getElementById("woleetKeyLabel");
-const saveToGitHubLabel = document.getElementById("saveToGitHubLabel");
-const githubTokenLabel = document.getElementById("githubTokenLabel");
-const githubUserLabel = document.getElementById("githubUserLabel");
-const githubRepositoryLabel = document.getElementById("githubRepositoryLabel");
-const githubBranchLabel = document.getElementById("githubBranchLabel");
+const saveToArkWsitesLabel = document.getElementById("saveToArkWsitesLabel");
+const ArkWsitesTokenLabel = document.getElementById("ArkWsitesTokenLabel");
 const compressHTMLLabel = document.getElementById("compressHTMLLabel");
 const compressCSSLabel = document.getElementById("compressCSSLabel");
 const moveStylesInHeadLabel = document.getElementById("moveStylesInHeadLabel");
@@ -266,11 +263,8 @@ const insertMetaCSPInput = document.getElementById("insertMetaCSPInput");
 const saveToClipboardInput = document.getElementById("saveToClipboardInput");
 const addProofInput = document.getElementById("addProofInput");
 const woleetKeyInput = document.getElementById("woleetKeyInput");
-const saveToGitHubInput = document.getElementById("saveToGitHubInput");
-const githubTokenInput = document.getElementById("githubTokenInput");
-const githubUserInput = document.getElementById("githubUserInput");
-const githubRepositoryInput = document.getElementById("githubRepositoryInput");
-const githubBranchInput = document.getElementById("githubBranchInput");
+const saveToArkWsitesInput = document.getElementById("saveToArkWsitesInput");
+const ArkWsitesTokenInput = document.getElementById("ArkWsitesTokenInput");
 const saveToFilesystemInput = document.getElementById("saveToFilesystemInput");
 const compressHTMLInput = document.getElementById("compressHTMLInput");
 const compressCSSInput = document.getElementById("compressCSSInput");
@@ -862,13 +856,12 @@ saveToFilesystemLabel.textContent = browser.i18n.getMessage(
 );
 addProofLabel.textContent = browser.i18n.getMessage("optionAddProof");
 woleetKeyLabel.textContent = browser.i18n.getMessage("optionWoleetKey");
-saveToGitHubLabel.textContent = browser.i18n.getMessage("optionSaveToGitHub");
-githubTokenLabel.textContent = browser.i18n.getMessage("optionGitHubToken");
-githubUserLabel.textContent = browser.i18n.getMessage("optionGitHubUser");
-githubRepositoryLabel.textContent = browser.i18n.getMessage(
-  "optionGitHubRepository"
+saveToArkWsitesLabel.textContent = browser.i18n.getMessage(
+  "optionSaveToArkWsites"
 );
-githubBranchLabel.textContent = browser.i18n.getMessage("optionGitHubBranch");
+ArkWsitesTokenLabel.textContent = browser.i18n.getMessage(
+  "optionArkWsitesToken"
+);
 compressHTMLLabel.textContent = browser.i18n.getMessage("optionCompressHTML");
 compressCSSLabel.textContent = browser.i18n.getMessage("optionCompressCSS");
 moveStylesInHeadLabel.textContent = browser.i18n.getMessage(
@@ -1270,17 +1263,10 @@ async function refresh(profileName) {
   addProofInput.checked = profileOptions.addProof;
   woleetKeyInput.value = profileOptions.woleetKey;
   woleetKeyInput.disabled = !profileOptions.addProof;
-  saveToGitHubInput.checked = profileOptions.saveToGitHub;
-  githubTokenInput.value = profileOptions.githubToken;
-  githubTokenInput.disabled = !profileOptions.saveToGitHub;
-  githubUserInput.value = profileOptions.githubUser;
-  githubUserInput.disabled = !profileOptions.saveToGitHub;
-  githubRepositoryInput.value = profileOptions.githubRepository;
-  githubRepositoryInput.disabled = !profileOptions.saveToGitHub;
-  githubBranchInput.value = profileOptions.githubBranch;
-  githubBranchInput.disabled = !profileOptions.saveToGitHub;
-  saveToFilesystemInput.checked =
-    !profileOptions.saveToGitHub && !profileOptions.saveToClipboard;
+  saveToArkWsitesInput.checked = profileOptions.saveToArkWsites;
+  ArkWsitesTokenInput.value = profileOptions.ArkWsitesToken;
+  ArkWsitesTokenInput.disabled = !profileOptions.saveToArkWsites;
+  saveToFilesystemInput.checked = false;
   compressHTMLInput.checked = profileOptions.compressHTML;
   compressCSSInput.checked = profileOptions.compressCSS;
   moveStylesInHeadInput.checked = profileOptions.moveStylesInHead;
@@ -1402,11 +1388,9 @@ async function update() {
       saveToClipboard: saveToClipboardInput.checked,
       addProof: addProofInput.checked,
       woleetKey: woleetKeyInput.value,
-      saveToGitHub: saveToGitHubInput.checked,
-      githubToken: githubTokenInput.value,
-      githubUser: githubUserInput.value,
-      githubRepository: githubRepositoryInput.value,
-      githubBranch: githubBranchInput.value,
+      saveToArkWsites: saveToArkWsitesInput.checked,
+      ArkWsitesToken: ArkWsitesTokenInput.value,
+
       compressHTML: compressHTMLInput.checked,
       compressCSS: compressCSSInput.checked,
       moveStylesInHead: moveStylesInHeadInput.checked,

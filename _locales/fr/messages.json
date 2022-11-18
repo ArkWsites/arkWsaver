@@ -548,25 +548,13 @@
     "message": "jeton d'accès",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "téléverser sur GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "téléverser sur ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "jeton d'accès",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "nom d'utilisateur",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "nom du dépôt",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "nom de la branche",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "sauvegarder la page d'un signet nouvellement créé",

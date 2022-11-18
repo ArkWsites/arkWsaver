@@ -547,25 +547,13 @@
     "message": "token de acesso",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "enviar ao GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "enviar ao ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "token de acesso",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "nome de usuário",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "nome de repositório",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "nome de branch",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "salvar site de um favorito recém-criado",

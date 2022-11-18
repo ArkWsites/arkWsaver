@@ -160,22 +160,19 @@ async function saveContent(message, tab) {
     options.incognito = tab.incognito;
     options.tabId = tabId;
     options.tabIndex = tab.index;
-    options.keepFilename = options.saveToGitHub;
+    options.keepFilename = options.saveToArkWsites;
     let pageData;
     try {
       pageData = await getPageData(options);
       pageData.url = pageData.content;
       pageData.content = await (await fetch(pageData.content)).text();
-      if (options.saveToGitHub) {
+      if (options.saveToArkWsites) {
         await (
-          await downloads.saveToGitHub(
+          await downloads.saveToArkWsites(
             message.taskId,
             downloads.encodeSharpCharacter(pageData.filename),
             pageData.content,
-            options.githubToken,
-            options.githubUser,
-            options.githubRepository,
-            options.githubBranch
+            options.ArkWsitesToken
           )
         ).pushPromise;
       } else {

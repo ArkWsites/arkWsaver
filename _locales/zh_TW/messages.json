@@ -547,25 +547,13 @@
     "message": "訪問令牌",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "保存到 GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "保存到 ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "訪問令牌",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "用戶名",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "倉庫名稱",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "分支名稱",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "創建新書籤時保存其對應頁面",

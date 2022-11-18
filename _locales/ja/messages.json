@@ -547,25 +547,13 @@
     "message": "access token",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "upload to GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "upload to ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "access token",
     "description": "Options page label: 'access token'"
-  },
-  "optionGitHubUser": {
-    "message": "user name",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "repository name",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "branch name",
-    "description": "Options page label: 'branch name'"
   },
   "optionSaveCreatedBookmarks": {
     "message": "新しく作成したブックマークのページを保存する",

@@ -547,26 +547,15 @@
     "message": "access token",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGitHub": {
-    "message": "subir a GitHub",
-    "description": "Options page label: 'upload to GitHub'"
+  "optionSaveToArkWsites": {
+    "message": "subir a ArkWsites",
+    "description": "Options page label: 'upload to ArkWsites'"
   },
-  "optionGitHubToken": {
+  "optionArkWsitesToken": {
     "message": "access token",
     "description": "Options page label: 'access token'"
   },
-  "optionGitHubUser": {
-    "message": "user name",
-    "description": "Options page label: 'user name'"
-  },
-  "optionGitHubRepository": {
-    "message": "repository name",
-    "description": "Options page label: 'repository name'"
-  },
-  "optionGitHubBranch": {
-    "message": "branch name",
-    "description": "Options page label: 'branch name'"
-  },
+
   "optionSaveCreatedBookmarks": {
     "message": "guardar la página de un marcador recién creado",
     "description": "Options page label: 'save the page of a newly created bookmark'"

@@ -105,7 +105,7 @@ async function savePage(message) {
         if (pageData) {
           if (
             ((!options.backgroundSave && !options.saveToClipboard) ||
-              options.saveToGitHub) &&
+              options.saveToArkWsites) &&
             options.confirmFilename
           ) {
             pageData.filename =
@@ -132,7 +132,7 @@ async function savePage(message) {
 async function processPage(options) {
   const frames = singlefile.processors.frameTree;
   let framesSessionId;
-  options.keepFilename = options.saveToGitHub;
+  options.keepFilename = options.saveToArkWsites;
   singlefile.helper.initDoc(document);
   ui.onStartPage(options);
   processor = new singlefile.SingleFile(options);

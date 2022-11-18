@@ -30,14 +30,14 @@ import * as editor from "./editor.js";
 import { launchWebAuthFlow, extractAuthCode } from "./tabs-util.js";
 import * as ui from "./../../ui/bg/index.js";
 import * as woleet from "./../../lib/woleet/woleet.js";
-import { pushGitHub } from "./../../lib/github/github.js";
+import { pushArkWsites } from "./../../lib/github/github.js";
 import { download } from "./download-util.js";
 
 const CONFLICT_ACTION_SKIP = "skip";
 const CONFLICT_ACTION_UNIQUIFY = "uniquify";
 const REGEXP_ESCAPE = /([{}()^$&.*?/+|[\\\\]|\]|-)/g;
 
-export { onMessage, downloadPage, saveToGitHub, encodeSharpCharacter };
+export { onMessage, downloadPage, saveToArkWsites, encodeSharpCharacter };
 
 async function onMessage(message, sender) {
   if (message.method.endsWith(".download")) {
@@ -91,17 +91,14 @@ async function downloadTabPage(message, tab) {
 
 async function downloadContent(tab, incognito, message) {
   try {
-    if (message.saveToGitHub) {
+    if (message.saveToArkWsites) {
       const pageContent = await (await fetch(message.content)).text();
       await (
-        await saveToGitHub(
+        await saveToArkWsites(
           message.taskId,
           encodeSharpCharacter(message.filename),
           [pageContent],
-          message.githubToken,
-          message.githubUser,
-          message.githubRepository,
-          message.githubBranch
+          message.ArkWsitesToken
         )
       ).pushPromise;
     } else {
@@ -138,25 +135,10 @@ function getRegExp(string) {
   return string.replace(REGEXP_ESCAPE, "\\$1");
 }
 
-async function saveToGitHub(
-  taskId,
-  filename,
-  content,
-  githubToken,
-  githubUser,
-  githubRepository,
-  githubBranch
-) {
+async function saveToArkWsites(taskId, filename, content, ArkWsitesToken) {
   const taskInfo = business.getTaskInfo(taskId);
   if (!taskInfo || !taskInfo.cancelled) {
-    const pushInfo = pushGitHub(
-      githubToken,
-      githubUser,
-      githubRepository,
-      githubBranch,
-      filename,
-      content
-    );
+    const pushInfo = pushArkWsites(ArkWsitesToken, filename, content);
     business.setCancelCallback(taskId, pushInfo.cancelPush);
     try {
       await (
@@ -164,7 +146,7 @@ async function saveToGitHub(
       ).pushPromise;
       return pushInfo;
     } catch (error) {
-      throw new Error(error.message + " (GitHub)");
+      throw new Error(error.message + " (ArkWsites)");
     }
   }
 }
