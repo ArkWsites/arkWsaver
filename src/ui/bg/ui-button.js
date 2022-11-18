@@ -28,7 +28,7 @@ import * as tabsData from "./../../core/bg/tabs-data.js";
 import { autoSaveIsEnabled } from "../../core/bg/autosave-util.js";
 
 const DEFAULT_ICON_PATH = "/src/ui/resources/icon_128.png";
-const WAIT_ICON_PATH_PREFIX = "/src/ui/resources/icon_128_wait";
+const WAIT_ICON_PATH_PREFIX = "/src/ui/resources/icon_128";
 const BUTTON_DEFAULT_TOOLTIP_MESSAGE = browser.i18n.getMessage(
   "buttonDefaultTooltip"
 );
@@ -203,7 +203,7 @@ function onStart(tabId, step, autoSave) {
     state.setTitle = {
       title: BUTTON_INITIALIZING_TOOLTIP_MESSAGE + " (" + step + "/2)",
     };
-    state.setIcon = { path: WAIT_ICON_PATH_PREFIX + "0.png" };
+    state.setIcon = { path: WAIT_ICON_PATH_PREFIX + ".png" };
   }
   refresh(tabId, state);
 }
@@ -245,7 +245,7 @@ function onProgress(tabId, index, maxIndex, tooltipMessage) {
     0
   );
   const barProgress = Math.min(Math.floor((index / maxIndex) * 8), 8);
-  const path = WAIT_ICON_PATH_PREFIX + barProgress + ".png";
+  const path = WAIT_ICON_PATH_PREFIX + ".png";
   const state = getButtonState("progress");
   state.setTitle = { title: tooltipMessage + progress * 5 + "%" };
   state.setIcon = { path };
