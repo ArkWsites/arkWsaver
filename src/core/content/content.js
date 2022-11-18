@@ -2,7 +2,7 @@
  * Copyright 2010-2020 Gildas Lormeau
  * contact : gildas.lormeau <at> gmail.com
  *
- * This file is part of SingleFile.
+ * This file is part of ArkWsaver.
  *
  *   The code in this file is free software: you can redistribute it and/or
  *   modify it under the terms of the GNU Affero General Public License
@@ -31,14 +31,14 @@ import {
 import * as ui from "./../../ui/content/content-ui.js";
 import { onError } from "./../../ui/common/content-error.js";
 
-const singlefile = globalThis.singlefile;
-const bootstrap = globalThis.singlefileBootstrap;
+const arkWsaver = globalThis.arkWsaver;
+const bootstrap = globalThis.arkWsaverBootstrap;
 
 const MOZ_EXTENSION_PROTOCOL = "moz-extension:";
 
 let processor, processing;
 
-singlefile.init({ fetch, frameFetch });
+arkWsaver.init({ fetch, frameFetch });
 browser.runtime.onMessage.addListener((message) => {
   if (
     message.method == "content.save" ||
@@ -63,7 +63,7 @@ async function onMessage(message) {
         browser.runtime.sendMessage({ method: "ui.processCancelled" });
       }
       if (message.options.loadDeferredImages) {
-        singlefile.processors.lazy.resetZoomLevel(message.options);
+        arkWsaver.processors.lazy.resetZoomLevel(message.options);
       }
       return {};
     }
@@ -129,12 +129,12 @@ async function savePage(message) {
 }
 
 async function processPage(options) {
-  const frames = singlefile.processors.frameTree;
+  const frames = arkWsaver.processors.frameTree;
   let framesSessionId;
   options.keepFilename = options.saveToArkWsites;
-  singlefile.helper.initDoc(document);
+  arkWsaver.helper.initDoc(document);
   ui.onStartPage(options);
-  processor = new singlefile.SingleFile(options);
+  processor = new arkWsaver.arkWsaver(options);
   const preInitializationPromises = [];
   options.insertCanonicalLink = true;
   if (!options.saveRawPage) {
@@ -165,7 +165,7 @@ async function processPage(options) {
       preInitializationPromises.push(frameTreePromise);
     }
     if (options.loadDeferredImages) {
-      const lazyLoadPromise = singlefile.processors.lazy.process(options);
+      const lazyLoadPromise = arkWsaver.processors.lazy.process(options);
       ui.onLoadingDeferResources(options);
       lazyLoadPromise.then(() => {
         if (!processor.cancelled) {
@@ -182,7 +182,7 @@ async function processPage(options) {
       if (event.type == event.RESOURCES_INITIALIZED) {
         maxIndex = event.detail.max;
         if (options.loadDeferredImages) {
-          singlefile.processors.lazy.resetZoomLevel(options);
+          arkWsaver.processors.lazy.resetZoomLevel(options);
         }
       }
       if (
@@ -267,7 +267,7 @@ async function processPage(options) {
     }
     ui.onEndPage();
     if (options.displayStats) {
-      console.log("SingleFile Lite stats"); // eslint-disable-line no-console
+      console.log("ArkWsaver stats"); // eslint-disable-line no-console
       console.table(page.stats); // eslint-disable-line no-console
     }
   }

@@ -2,7 +2,7 @@
  * Copyright 2010-2020 Gildas Lormeau
  * contact : gildas.lormeau <at> gmail.com
  *
- * This file is part of SingleFile.
+ * This file is part of ArkWsaver.
  *
  *   The code in this file is free software: you can redistribute it and/or
  *   modify it under the terms of the GNU Affero General Public License
@@ -24,7 +24,7 @@
 /* global globalThis, window, document, fetch, DOMParser, getComputedStyle, setTimeout, clearTimeout, NodeFilter, Readability, isProbablyReaderable, matchMedia, TextDecoder, Node */
 
 ((globalThis) => {
-  const singlefile = globalThis.singlefile;
+  const arkWsaver = globalThis.arkWsaver;
 
   const FORBIDDEN_TAG_NAMES = [
     "a",
@@ -80,7 +80,7 @@
   const NOTE_HEADER_HEIGHT = 25;
   const DISABLED_NOSCRIPT_ATTRIBUTE_NAME = "data-single-file-disabled-noscript";
   const COMMENT_HEADER = "arkWsaverUrl";
-  const COMMENT_HEADER_LEGACY = "Archive processed by SingleFile";
+  const COMMENT_HEADER_LEGACY = "Archive processed by ArkWsaver";
 
   const STYLE_FORMATTED_PAGE = `
 	/* This Source Code Form is subject to the terms of the Mozilla Public
@@ -1628,8 +1628,8 @@ pre code {
             .querySelectorAll(
               "." +
                 HIGHLIGHT_CLASS +
-                "[data-singlefile-highlight-id=" +
-                JSON.stringify(element.dataset.singlefileHighlightId) +
+                "[data-arkWsaver-highlight-id=" +
+                JSON.stringify(element.dataset.arkWsaverHighlightId) +
                 "]"
             )
             .forEach((highlightedElement) => {
@@ -2019,7 +2019,7 @@ pre code {
         (highlightedElement) =>
           (highlightId = Math.max(
             highlightId,
-            highlightedElement.dataset.singlefileHighlightId
+            highlightedElement.dataset.arkWsaverHighlightId
           ))
       );
     highlightId++;
@@ -2104,7 +2104,7 @@ pre code {
         resetHighlightedElement(node);
         node.classList.add(HIGHLIGHT_CLASS);
         node.classList.add(highlightColor);
-        node.dataset.singlefileHighlightId = highlightId;
+        node.dataset.arkWsaverHighlightId = highlightId;
       } else if (node.parentElement) {
         highlightTextNode(node);
       }
@@ -2115,7 +2115,7 @@ pre code {
       spanElement.classList.add(HIGHLIGHT_CLASS);
       spanElement.classList.add(highlightColor);
       spanElement.textContent = node.textContent;
-      spanElement.dataset.singlefileHighlightId = highlightId;
+      spanElement.dataset.arkWsaverHighlightId = highlightId;
       node.parentNode.replaceChild(spanElement, node);
       return spanElement;
     }
@@ -2143,7 +2143,7 @@ pre code {
     document.querySelectorAll(NOTE_TAGNAME).forEach((containerElement) => {
       shadowRoots[containerElement.dataset.noteId] =
         containerElement.shadowRoot;
-      const className = "singlefile-note-id-" + containerElement.dataset.noteId;
+      const className = "arkWsaver-note-id-" + containerElement.dataset.noteId;
       containerElement.classList.add(className);
       classesToPreserve.push(className);
     });
@@ -2157,9 +2157,9 @@ pre code {
     document.documentElement.replaceChild(doc.body, document.body);
     document.querySelectorAll(NOTE_TAGNAME).forEach((containerElement) => {
       const noteId = Array.from(containerElement.classList)
-        .find((className) => /singlefile-note-id-\d+/.test(className))
-        .split("singlefile-note-id-")[1];
-      containerElement.classList.remove("singlefile-note-id-" + noteId);
+        .find((className) => /arkWsaver-note-id-\d+/.test(className))
+        .split("arkWsaver-note-id-")[1];
+      containerElement.classList.remove("arkWsaver-note-id-" + noteId);
       containerElement.dataset.noteId = noteId;
       if (!containerElement.shadowRoot) {
         containerElement.attachShadow({ mode: "open" });
@@ -2285,7 +2285,7 @@ pre code {
       doc.body.appendChild(element);
       element.textContent = resource.content;
     });
-    return singlefile.helper.serialize(doc, compressHTML);
+    return arkWsaver.helper.serialize(doc, compressHTML);
   }
 
   function onUpdate(saved) {
@@ -2337,7 +2337,7 @@ pre code {
     element.classList.remove("single-file-highlight-pink");
     element.classList.remove("single-file-highlight-blue");
     element.classList.remove("single-file-highlight-green");
-    delete element.dataset.singlefileHighlightId;
+    delete element.dataset.arkWsaverHighlightId;
   }
 
   function serializeShadowRoots(node) {
@@ -2508,18 +2508,18 @@ pre code {
     if (noteRefs.length) {
       setNoteRefs(anchorElement, noteRefs);
     } else {
-      delete anchorElement.dataset.singleFileNoteRefs;
+      delete anchorElement.dataset.arkWsaverNoteRefs;
     }
   }
 
   function getNoteRefs(anchorElement) {
     return JSON.parse(
-      "[" + (anchorElement.dataset.singleFileNoteRefs || "") + "]"
+      "[" + (anchorElement.dataset.arkWsaverNoteRefs || "") + "]"
     );
   }
 
   function setNoteRefs(anchorElement, noteRefs) {
-    anchorElement.dataset.singleFileNoteRefs = noteRefs.toString();
+    anchorElement.dataset.arkWsaverNoteRefs = noteRefs.toString();
   }
 
   function minifyText(text) {

@@ -2,7 +2,7 @@
  * Copyright 2010-2020 Gildas Lormeau
  * contact : gildas.lormeau <at> gmail.com
  *
- * This file is part of SingleFile.
+ * This file is part of ArkWsaver.
  *
  *   The code in this file is free software: you can redistribute it and/or
  *   modify it under the terms of the GNU Affero General Public License
@@ -119,7 +119,7 @@ const DEFAULT_CONFIG = {
   autoSaveExternalSave: false,
   insertMetaNoIndex: false,
   insertMetaCSP: true,
-  insertSingleFileComment: true,
+  insertarkWsaverComment: true,
   blockMixedContent: false,
   saveOriginalURLs: false,
   acceptHeaders: {
@@ -572,7 +572,7 @@ async function exportConfig() {
     );
   const downloadInfo = {
     url,
-    filename: `singlefile-settings-${new Date()
+    filename: `arkWsaver-settings-${new Date()
       .toISOString()
       .replace(/:/g, "_")}.json`,
     saveAs: true,

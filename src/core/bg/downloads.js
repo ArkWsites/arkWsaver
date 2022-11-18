@@ -2,7 +2,7 @@
  * Copyright 2010-2020 Gildas Lormeau
  * contact : gildas.lormeau <at> gmail.com
  *
- * This file is part of SingleFile.
+ * This file is part of ArkWsaver.
  *
  *   The code in this file is free software: you can redistribute it and/or
  *   modify it under the terms of the GNU Affero General Public License
