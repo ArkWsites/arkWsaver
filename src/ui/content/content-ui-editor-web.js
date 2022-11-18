@@ -1149,9 +1149,6 @@ pre code {
         "*"
       );
     }
-    if (message.method == "printPage") {
-      printPage();
-    }
   };
   window.onresize = reflowNotes;
   document.ondragover = (event) => event.preventDefault();
