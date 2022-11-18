@@ -1,4 +1,4 @@
-# ArkWsaver - ArkWsites companion for create your world
+# ArkWsites companion to save webpages
 
 ## Configuration
 
