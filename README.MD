@@ -1,4 +1,4 @@
-# ArkWsites companion for save webpages
+# ArkWsites companion to save webpages
 
 ## Configuration
 
