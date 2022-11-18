@@ -105,7 +105,6 @@ async function savePage(message) {
         if (pageData) {
           if (
             ((!options.backgroundSave && !options.saveToClipboard) ||
-              options.saveToGDrive ||
               options.saveToGitHub) &&
             options.confirmFilename
           ) {
@@ -133,7 +132,7 @@ async function savePage(message) {
 async function processPage(options) {
   const frames = singlefile.processors.frameTree;
   let framesSessionId;
-  options.keepFilename = options.saveToGDrive || options.saveToGitHub;
+  options.keepFilename = options.saveToGitHub;
   singlefile.helper.initDoc(document);
   ui.onStartPage(options);
   processor = new singlefile.SingleFile(options);

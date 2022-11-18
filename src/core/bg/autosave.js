@@ -160,24 +160,13 @@ async function saveContent(message, tab) {
     options.incognito = tab.incognito;
     options.tabId = tabId;
     options.tabIndex = tab.index;
-    options.keepFilename = options.saveToGDrive || options.saveToGitHub;
+    options.keepFilename = options.saveToGitHub;
     let pageData;
     try {
       pageData = await getPageData(options);
       pageData.url = pageData.content;
       pageData.content = await (await fetch(pageData.content)).text();
-      if (options.saveToGDrive) {
-        const blob = new Blob([pageData.content], { type: "text/html" });
-        await downloads.saveToGDrive(
-          message.taskId,
-          downloads.encodeSharpCharacter(pageData.filename),
-          blob,
-          options,
-          {
-            forceWebAuthFlow: options.forceWebAuthFlow,
-          }
-        );
-      } else if (options.saveToGitHub) {
+      if (options.saveToGitHub) {
         await (
           await downloads.saveToGitHub(
             message.taskId,

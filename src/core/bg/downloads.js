@@ -30,38 +30,18 @@ import * as editor from "./editor.js";
 import { launchWebAuthFlow, extractAuthCode } from "./tabs-util.js";
 import * as ui from "./../../ui/bg/index.js";
 import * as woleet from "./../../lib/woleet/woleet.js";
-import { GDrive } from "./../../lib/gdrive/gdrive.js";
 import { pushGitHub } from "./../../lib/github/github.js";
 import { download } from "./download-util.js";
 
-const GDRIVE_CLIENT_ID =
-  "207618107333-3pj2pmelhnl4sf3rpctghs9cean3q8nj.apps.googleusercontent.com";
-const GDRIVE_CLIENT_KEY = "000000000000000000000000";
-const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 const CONFLICT_ACTION_SKIP = "skip";
 const CONFLICT_ACTION_UNIQUIFY = "uniquify";
 const REGEXP_ESCAPE = /([{}()^$&.*?/+|[\\\\]|\]|-)/g;
 
-const gDrive = new GDrive(GDRIVE_CLIENT_ID, GDRIVE_CLIENT_KEY, SCOPES);
-export {
-  onMessage,
-  downloadPage,
-  saveToGDrive,
-  saveToGitHub,
-  encodeSharpCharacter,
-};
+export { onMessage, downloadPage, saveToGitHub, encodeSharpCharacter };
 
 async function onMessage(message, sender) {
   if (message.method.endsWith(".download")) {
     return downloadTabPage(message, sender.tab);
-  }
-  if (message.method.endsWith(".disableGDrive")) {
-    const authInfo = await config.getAuthInfo();
-    config.removeAuthInfo();
-    await gDrive.revokeAuthToken(
-      authInfo && (authInfo.accessToken || authInfo.revokableAccessToken)
-    );
-    return {};
   }
   if (message.method.endsWith(".end")) {
     if (message.hash) {
@@ -111,21 +91,7 @@ async function downloadTabPage(message, tab) {
 
 async function downloadContent(tab, incognito, message) {
   try {
-    if (message.saveToGDrive) {
-      const pageBlob = await (await fetch(message.content)).blob();
-      await saveToGDrive(
-        message.taskId,
-        encodeSharpCharacter(message.filename),
-        pageBlob,
-        {
-          forceWebAuthFlow: message.forceWebAuthFlow,
-        },
-        {
-          onProgress: (offset, size) =>
-            ui.onUploadProgress(tab.id, offset, size),
-        }
-      );
-    } else if (message.saveToGitHub) {
+    if (message.saveToGitHub) {
       const pageContent = await (await fetch(message.content)).text();
       await (
         await saveToGitHub(
@@ -172,26 +138,6 @@ function getRegExp(string) {
   return string.replace(REGEXP_ESCAPE, "\\$1");
 }
 
-async function getAuthInfo(authOptions, force) {
-  let authInfo = await config.getAuthInfo();
-  const options = {
-    interactive: true,
-    forceWebAuthFlow: authOptions.forceWebAuthFlow,
-    launchWebAuthFlow: (options) => launchWebAuthFlow(options),
-    extractAuthCode: (authURL) => extractAuthCode(authURL),
-  };
-  gDrive.setAuthInfo(authInfo, options);
-  if (!authInfo || !authInfo.accessToken || force) {
-    authInfo = await gDrive.auth(options);
-    if (authInfo) {
-      await config.setAuthInfo(authInfo);
-    } else {
-      await config.removeAuthInfo();
-    }
-  }
-  return authInfo;
-}
-
 async function saveToGitHub(
   taskId,
   filename,
@@ -219,51 +165,6 @@ async function saveToGitHub(
       return pushInfo;
     } catch (error) {
       throw new Error(error.message + " (GitHub)");
-    }
-  }
-}
-
-async function saveToGDrive(
-  taskId,
-  filename,
-  blob,
-  authOptions,
-  uploadOptions
-) {
-  try {
-    await getAuthInfo(authOptions);
-    const taskInfo = business.getTaskInfo(taskId);
-    if (!taskInfo || !taskInfo.cancelled) {
-      return gDrive.upload(filename, blob, uploadOptions, (callback) =>
-        business.setCancelCallback(taskId, callback)
-      );
-    }
-  } catch (error) {
-    if (error.message == "invalid_token") {
-      let authInfo;
-      try {
-        authInfo = await gDrive.refreshAuthToken();
-      } catch (error) {
-        if (error.message == "unknown_token") {
-          authInfo = await getAuthInfo(authOptions, true);
-        } else {
-          throw new Error(error.message + " (Google Drive)");
-        }
-      }
-      if (authInfo) {
-        await config.setAuthInfo(authInfo);
-      } else {
-        await config.removeAuthInfo();
-      }
-      return await saveToGDrive(
-        taskId,
-        filename,
-        blob,
-        authOptions,
-        uploadOptions
-      );
-    } else {
-      throw new Error(error.message + " (Google Drive)");
     }
   }
 }

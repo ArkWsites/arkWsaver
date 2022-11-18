@@ -547,10 +547,6 @@
     "message": "token dostępu",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGDrive": {
-    "message": "przesyłaj na Dysk Google",
-    "description": "Options page label: 'upload to Google Drive'"
-  },
   "optionSaveToGitHub": {
     "message": "przesyłaj do GitHuba",
     "description": "Options page label: 'upload to GitHub'"

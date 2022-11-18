@@ -534,7 +534,7 @@ function savePage() {
     "*"
   );
   // force close window on done
-  window.close();
+  // window.close();
 }
 
 function getPosition(event) {

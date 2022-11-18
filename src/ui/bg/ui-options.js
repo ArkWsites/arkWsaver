@@ -75,7 +75,6 @@ const saveToClipboardLabel = document.getElementById("saveToClipboardLabel");
 const saveToFilesystemLabel = document.getElementById("saveToFilesystemLabel");
 const addProofLabel = document.getElementById("addProofLabel");
 const woleetKeyLabel = document.getElementById("woleetKeyLabel");
-const saveToGDriveLabel = document.getElementById("saveToGDriveLabel");
 const saveToGitHubLabel = document.getElementById("saveToGitHubLabel");
 const githubTokenLabel = document.getElementById("githubTokenLabel");
 const githubUserLabel = document.getElementById("githubUserLabel");
@@ -267,7 +266,6 @@ const insertMetaCSPInput = document.getElementById("insertMetaCSPInput");
 const saveToClipboardInput = document.getElementById("saveToClipboardInput");
 const addProofInput = document.getElementById("addProofInput");
 const woleetKeyInput = document.getElementById("woleetKeyInput");
-const saveToGDriveInput = document.getElementById("saveToGDriveInput");
 const saveToGitHubInput = document.getElementById("saveToGitHubInput");
 const githubTokenInput = document.getElementById("githubTokenInput");
 const githubUserInput = document.getElementById("githubUserInput");
@@ -727,12 +725,6 @@ saveToClipboardInput.addEventListener(
   () => disableDestinationPermissions(["nativeMessaging"]),
   false
 );
-saveToGDriveInput.addEventListener(
-  "click",
-  () =>
-    disableDestinationPermissions(["clipboardWrite", "nativeMessaging"], false),
-  false
-);
 saveCreatedBookmarksInput.addEventListener(
   "click",
   saveCreatedBookmarks,
@@ -744,7 +736,6 @@ autoSaveExternalSaveInput.addEventListener(
   false
 );
 saveToClipboardInput.addEventListener("click", onClickSaveToClipboard, false);
-saveToGDriveInput.addEventListener("click", onClickSaveToGDrive, false);
 addProofInput.addEventListener("click", async (event) => {
   if (addProofInput.checked) {
     addProofInput.checked = false;
@@ -871,7 +862,6 @@ saveToFilesystemLabel.textContent = browser.i18n.getMessage(
 );
 addProofLabel.textContent = browser.i18n.getMessage("optionAddProof");
 woleetKeyLabel.textContent = browser.i18n.getMessage("optionWoleetKey");
-saveToGDriveLabel.textContent = browser.i18n.getMessage("optionSaveToGDrive");
 saveToGitHubLabel.textContent = browser.i18n.getMessage("optionSaveToGitHub");
 githubTokenLabel.textContent = browser.i18n.getMessage("optionGitHubToken");
 githubUserLabel.textContent = browser.i18n.getMessage("optionGitHubUser");
@@ -1280,7 +1270,6 @@ async function refresh(profileName) {
   addProofInput.checked = profileOptions.addProof;
   woleetKeyInput.value = profileOptions.woleetKey;
   woleetKeyInput.disabled = !profileOptions.addProof;
-  saveToGDriveInput.checked = profileOptions.saveToGDrive;
   saveToGitHubInput.checked = profileOptions.saveToGitHub;
   githubTokenInput.value = profileOptions.githubToken;
   githubTokenInput.disabled = !profileOptions.saveToGitHub;
@@ -1291,9 +1280,7 @@ async function refresh(profileName) {
   githubBranchInput.value = profileOptions.githubBranch;
   githubBranchInput.disabled = !profileOptions.saveToGitHub;
   saveToFilesystemInput.checked =
-    !profileOptions.saveToGDrive &&
-    !profileOptions.saveToGitHub &&
-    !profileOptions.saveToClipboard;
+    !profileOptions.saveToGitHub && !profileOptions.saveToClipboard;
   compressHTMLInput.checked = profileOptions.compressHTML;
   compressCSSInput.checked = profileOptions.compressCSS;
   moveStylesInHeadInput.checked = profileOptions.moveStylesInHead;
@@ -1415,7 +1402,6 @@ async function update() {
       saveToClipboard: saveToClipboardInput.checked,
       addProof: addProofInput.checked,
       woleetKey: woleetKeyInput.value,
-      saveToGDrive: saveToGDriveInput.checked,
       saveToGitHub: saveToGitHubInput.checked,
       githubToken: githubTokenInput.value,
       githubUser: githubUserInput.value,
@@ -1559,9 +1545,6 @@ async function onClickSaveToClipboard() {
       });
       if (permissionGranted) {
         saveToClipboardInput.checked = true;
-        await browser.runtime.sendMessage({
-          method: "downloads.disableGDrive",
-        });
       }
     } catch (error) {
       saveToClipboardInput.checked = false;
@@ -1571,34 +1554,7 @@ async function onClickSaveToClipboard() {
   await refresh();
 }
 
-async function onClickSaveToGDrive() {
-  if (saveToGDriveInput.checked) {
-    saveToGDriveInput.checked = false;
-    try {
-      if (requestPermissionIdentity) {
-        const permissionGranted = await browser.permissions.request({
-          permissions: ["identity"],
-        });
-        if (permissionGranted) {
-          saveToGDriveInput.checked = true;
-        }
-      }
-    } catch (error) {
-      saveToGDriveInput.checked = false;
-      await browser.runtime.sendMessage({ method: "downloads.disableGDrive" });
-    }
-  }
-  await update();
-  await refresh();
-}
-
-async function disableDestinationPermissions(
-  permissions,
-  disableGDrive = true
-) {
-  if (disableGDrive) {
-    await browser.runtime.sendMessage({ method: "downloads.disableGDrive" });
-  }
+async function disableDestinationPermissions(permissions) {
   try {
     await browser.permissions.remove({ permissions });
   } catch (error) {

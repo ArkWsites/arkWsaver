@@ -547,10 +547,6 @@
     "message": "токен доступа",
     "description": "Options page label: 'access token'"
   },
-  "optionSaveToGDrive": {
-    "message": "загрузить на Google Drive",
-    "description": "Options page label: 'upload to Google Drive'"
-  },
   "optionSaveToGitHub": {
     "message": "загрузить на GitHub",
     "description": "Options page label: 'upload to GitHub'"

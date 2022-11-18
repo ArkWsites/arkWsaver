@@ -102,7 +102,6 @@ const DEFAULT_CONFIG = {
   saveRawPage: false,
   saveToClipboard: false,
   addProof: false,
-  saveToGDrive: false,
   saveToGitHub: false,
   githubToken: "",
   githubUser: "",
