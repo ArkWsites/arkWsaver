@@ -455,7 +455,6 @@ function resetHighlightButtons() {
 
 function disableRemoveHighlights() {
   toolbarElement.classList.remove("remove-highlight-mode");
-  removeHighlightButton.classList.add("remove-highlight-disabled");
   editorElement.contentWindow.postMessage(
     JSON.stringify({ method: "disableRemoveHighlights" }),
     "*"
