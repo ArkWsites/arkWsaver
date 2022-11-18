@@ -85,14 +85,13 @@
   ],
   "permissions": [
     "contextMenus",
-    "downloads",
     "storage",
     "tabs",
     "activeTab",
     "scripting",
     "offscreen"
   ],
-  "optional_permissions": ["clipboardWrite", "identity", "bookmarks"],
+  "optional_permissions": ["identity", "bookmarks"],
   "host_permissions": ["<all_urls>"],
   "devtools_page": "src/core/devtools/devtools.html",
   "incognito": "spanning",

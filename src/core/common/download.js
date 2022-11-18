@@ -46,7 +46,6 @@ async function downloadPage(pageData, options) {
         confirmFilename: options.confirmFilename,
         filenameConflictAction: options.filenameConflictAction,
         filename: pageData.filename,
-        saveToClipboard: options.saveToClipboard,
         saveToArkWsites: options.saveToArkWsites,
         ArkWsitesToken: options.ArkWsitesToken,
         forceWebAuthFlow: options.forceWebAuthFlow,
@@ -64,16 +63,10 @@ async function downloadPage(pageData, options) {
         content: blobURL,
       };
       await browser.runtime.sendMessage(message);
-      if (!options.openEditor && options.saveToClipboard) {
-        saveToClipboard(pageData);
-      }
     } else {
-      if (options.saveToClipboard) {
-        saveToClipboard(pageData);
-      } else {
-        blobURL = getContentBlobURL(pageData);
-        await downloadPageForeground(pageData, blobURL);
-      }
+      blobURL = getContentBlobURL(pageData);
+      await downloadPageForeground(pageData, blobURL);
+
       if (options.openSavedPage) {
         open(getContentBlobURL(pageData));
       }
@@ -100,19 +93,6 @@ async function downloadPageForeground(pageData, blobURL) {
     link.dispatchEvent(new MouseEvent("click"));
   }
   return new Promise((resolve) => setTimeout(resolve, 1));
-}
-
-function saveToClipboard(page) {
-  const command = "copy";
-  document.addEventListener(command, listener);
-  document.execCommand(command);
-  document.removeEventListener(command, listener);
-
-  function listener(event) {
-    event.clipboardData.setData("text/html", page.content);
-    event.clipboardData.setData("text/plain", page.content);
-    event.preventDefault();
-  }
 }
 
 function getContentBlobURL(pageData) {

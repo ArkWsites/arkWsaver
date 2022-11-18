@@ -100,7 +100,6 @@ const DEFAULT_CONFIG = {
   groupDuplicateImages: true,
   maxSizeDuplicateImages: 512 * 1024,
   saveRawPage: false,
-  saveToClipboard: false,
   addProof: false,
   saveToArkWsites: true,
   ArkWsitesToken: "",

@@ -71,8 +71,6 @@ const acceptHeaderImageLabel = document.getElementById(
 );
 const saveRawPageLabel = document.getElementById("saveRawPageLabel");
 const insertMetaCSPLabel = document.getElementById("insertMetaCSPLabel");
-const saveToClipboardLabel = document.getElementById("saveToClipboardLabel");
-const saveToFilesystemLabel = document.getElementById("saveToFilesystemLabel");
 const addProofLabel = document.getElementById("addProofLabel");
 const woleetKeyLabel = document.getElementById("woleetKeyLabel");
 const saveToArkWsitesLabel = document.getElementById("saveToArkWsitesLabel");
@@ -260,12 +258,10 @@ const acceptHeaderImageInput = document.getElementById(
 );
 const saveRawPageInput = document.getElementById("saveRawPageInput");
 const insertMetaCSPInput = document.getElementById("insertMetaCSPInput");
-const saveToClipboardInput = document.getElementById("saveToClipboardInput");
 const addProofInput = document.getElementById("addProofInput");
 const woleetKeyInput = document.getElementById("woleetKeyInput");
 const saveToArkWsitesInput = document.getElementById("saveToArkWsitesInput");
 const ArkWsitesTokenInput = document.getElementById("ArkWsitesTokenInput");
-const saveToFilesystemInput = document.getElementById("saveToFilesystemInput");
 const compressHTMLInput = document.getElementById("compressHTMLInput");
 const compressCSSInput = document.getElementById("compressCSSInput");
 const moveStylesInHeadInput = document.getElementById("moveStylesInHeadInput");
@@ -709,16 +705,6 @@ expandAllButton.addEventListener(
   },
   false
 );
-saveToFilesystemInput.addEventListener(
-  "click",
-  () => disableDestinationPermissions(["clipboardWrite", "nativeMessaging"]),
-  false
-);
-saveToClipboardInput.addEventListener(
-  "click",
-  () => disableDestinationPermissions(["nativeMessaging"]),
-  false
-);
 saveCreatedBookmarksInput.addEventListener(
   "click",
   saveCreatedBookmarks,
@@ -729,7 +715,6 @@ autoSaveExternalSaveInput.addEventListener(
   () => enableExternalSave(autoSaveExternalSaveInput),
   false
 );
-saveToClipboardInput.addEventListener("click", onClickSaveToClipboard, false);
 addProofInput.addEventListener("click", async (event) => {
   if (addProofInput.checked) {
     addProofInput.checked = false;
@@ -848,12 +833,6 @@ acceptHeaderImageLabel.textContent = browser.i18n.getMessage(
 );
 saveRawPageLabel.textContent = browser.i18n.getMessage("optionSaveRawPage");
 insertMetaCSPLabel.textContent = browser.i18n.getMessage("optionInsertMetaCSP");
-saveToClipboardLabel.textContent = browser.i18n.getMessage(
-  "optionSaveToClipboard"
-);
-saveToFilesystemLabel.textContent = browser.i18n.getMessage(
-  "optionSaveToFilesystem"
-);
 addProofLabel.textContent = browser.i18n.getMessage("optionAddProof");
 woleetKeyLabel.textContent = browser.i18n.getMessage("optionWoleetKey");
 saveToArkWsitesLabel.textContent = browser.i18n.getMessage(
@@ -1259,14 +1238,12 @@ async function refresh(profileName) {
   acceptHeaderImageInput.value = profileOptions.acceptHeaders.image;
   saveRawPageInput.checked = profileOptions.saveRawPage;
   insertMetaCSPInput.checked = profileOptions.insertMetaCSP;
-  saveToClipboardInput.checked = profileOptions.saveToClipboard;
   addProofInput.checked = profileOptions.addProof;
   woleetKeyInput.value = profileOptions.woleetKey;
   woleetKeyInput.disabled = !profileOptions.addProof;
   saveToArkWsitesInput.checked = profileOptions.saveToArkWsites;
   ArkWsitesTokenInput.value = profileOptions.ArkWsitesToken;
   ArkWsitesTokenInput.disabled = !profileOptions.saveToArkWsites;
-  saveToFilesystemInput.checked = false;
   compressHTMLInput.checked = profileOptions.compressHTML;
   compressCSSInput.checked = profileOptions.compressCSS;
   moveStylesInHeadInput.checked = profileOptions.moveStylesInHead;
@@ -1385,7 +1362,6 @@ async function update() {
       },
       saveRawPage: saveRawPageInput.checked,
       insertMetaCSP: insertMetaCSPInput.checked,
-      saveToClipboard: saveToClipboardInput.checked,
       addProof: addProofInput.checked,
       woleetKey: woleetKeyInput.value,
       saveToArkWsites: saveToArkWsitesInput.checked,
@@ -1518,24 +1494,6 @@ async function saveCreatedBookmarks() {
     await refresh();
     await browser.runtime.sendMessage({ method: "bookmarks.disable" });
   }
-}
-
-async function onClickSaveToClipboard() {
-  if (saveToClipboardInput.checked) {
-    saveToClipboardInput.checked = false;
-    try {
-      const permissionGranted = await browser.permissions.request({
-        permissions: ["clipboardWrite"],
-      });
-      if (permissionGranted) {
-        saveToClipboardInput.checked = true;
-      }
-    } catch (error) {
-      saveToClipboardInput.checked = false;
-    }
-  }
-  await update();
-  await refresh();
 }
 
 async function disableDestinationPermissions(permissions) {

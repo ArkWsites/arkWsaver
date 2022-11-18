@@ -528,14 +528,6 @@
     "message": "définir la stratégie de sécurité du contenu",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "copier dans le presse-papiers",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "enregistrer dans le système de fichiers",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "ajouter une preuve d'existence",
     "description": "Options page label: 'add proof of existence'"

@@ -527,14 +527,6 @@
     "message": "set content security policy",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "Kopieren in die Zwischenablage",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "Speichern im Dateisystem",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "Existenzberechtigung hinzufügen",
     "description": "Options page label: 'add proof of existence'"

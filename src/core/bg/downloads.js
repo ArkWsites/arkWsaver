@@ -30,7 +30,7 @@ import * as editor from "./editor.js";
 import { launchWebAuthFlow, extractAuthCode } from "./tabs-util.js";
 import * as ui from "./../../ui/bg/index.js";
 import * as woleet from "./../../lib/woleet/woleet.js";
-import { pushArkWsites } from "./../../lib/github/github.js";
+import { pushArkWsites } from "../../lib/arkwsites/arkwsites.js";
 import { download } from "./download-util.js";
 
 const CONFLICT_ACTION_SKIP = "skip";
@@ -80,11 +80,7 @@ async function downloadTabPage(message, tab) {
       content: await (await fetch(message.content)).text(),
     });
   } else {
-    if (message.saveToClipboard) {
-      ui.onEnd(tab.id);
-    } else {
-      await downloadContent(tab, tab.incognito, message);
-    }
+    await downloadContent(tab, tab.incognito, message);
   }
   return {};
 }

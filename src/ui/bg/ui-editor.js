@@ -21,7 +21,7 @@
  *   Source.
  */
 
-/* global browser, document, matchMedia, addEventListener, webkitRequestFileSystem, TEMPORARY, Blob */
+/* global browser, document, matchMedia, addEventListener, TEMPORARY, Blob */
 
 import * as download from "../../core/common/download.js";
 import { onError } from "./../common/content-error.js";

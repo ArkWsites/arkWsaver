@@ -527,14 +527,6 @@
     "message": "set content security policy",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "зберегти в буфер обміну",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "save to filesystem",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "add proof of existence",
     "description": "Options page label: 'add proof of existence'"

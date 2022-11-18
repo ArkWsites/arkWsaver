@@ -104,8 +104,7 @@ async function savePage(message) {
         const pageData = await processPage(options);
         if (pageData) {
           if (
-            ((!options.backgroundSave && !options.saveToClipboard) ||
-              options.saveToArkWsites) &&
+            (!options.backgroundSave || options.saveToArkWsites) &&
             options.confirmFilename
           ) {
             pageData.filename =

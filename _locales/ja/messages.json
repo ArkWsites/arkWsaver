@@ -527,14 +527,6 @@
     "message": "set content security policy",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "クリップボードに保存する",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "save to filesystem",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "ブロックチェーン証明を追加する",
     "description": "Options page label: 'add proof of existence'"

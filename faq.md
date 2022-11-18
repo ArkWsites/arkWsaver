@@ -8,10 +8,6 @@ For security purposes, browsers block web extensions on certain domains. This pr
 
 These elements need JavaScript to work properly. By default, SingleFile removes scripts because they can alter the rendering and there is no guarantee they will work offline. However, you can save them by unchecking the option "Network > blocked resources > scripts", unchecking "HTML Content > remove hidden elements" and optionally checking the option "HTML Content > save raw page".
 
-## Why isn't the infobar displayed / Why cannot I save a page from the filesystem in Chrome?
-
-By default, Chrome extensions are not allowed to access to pages stored on the filesystem. Therefore, you must enable the option "Allow access to file URLs" in the extension page to display the infobar when viewing a saved page, or to save a page stored on the filesystem.
-
 ## What are the permissions requested by SingleFile for?
 
 The permissions requested by SingleFile are defined in the [manifest.json](https://github.com/gildas-lormeau/SingleFile/blob/master/manifest.json) file. Below are the reasons why they are necessary.
@@ -19,8 +15,6 @@ The permissions requested by SingleFile are defined in the [manifest.json](https
 - `storage`: allows SingleFile to store your settings.
 - `menus/contextMenus`: allows SingleFile to display an entry in the context menu of web pages.
 - `tabs` (all_urls): allows SingleFile to inject the code needed to process a page in any tab. This permission is needed for saving several tabs in one click, for example.
-- `downloads`: allows SingleFile to save pages as if they were downloaded from the web.
-- `clipboardWrite`: allows SingleFile to copy the content of a page into the clipboard instead of saving it.
 
 ## SingleFile is slow on my computer/tablet/phone, can it run faster?
 

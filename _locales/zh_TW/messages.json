@@ -527,14 +527,6 @@
     "message": "設置內容安全策略",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "保存到剪切板",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "保存到文件系統",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "添加證明文件存在的指紋",
     "description": "Options page label: 'add proof of existence'"

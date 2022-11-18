@@ -527,14 +527,6 @@
     "message": "ustaw politykę bezpieczeństwa treści",
     "description": "Options page label: 'set content security policy'"
   },
-  "optionSaveToClipboard": {
-    "message": "kopiuj do schowka",
-    "description": "Options page label: 'copy to clipboard'"
-  },
-  "optionSaveToFilesystem": {
-    "message": "zapisuj do systemu plików",
-    "description": "Options page label: 'save to filesystem'"
-  },
   "optionAddProof": {
     "message": "dodawaj dowód istnienia",
     "description": "Options page label: 'add proof of existence'"
